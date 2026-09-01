@@ -134,7 +134,9 @@
 
     
     
-    /* Flawless Framer Velocity Game Marquee (Horizontal Flex, Zero Glitch) */
+    
+    
+    /* Game Cards Vault with Crisp Edges & Glowing Borders */
     @keyframes marqueeForward {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
@@ -149,6 +151,8 @@
       flex-wrap: nowrap !important;
       width: max-content !important;
       align-items: center !important;
+      padding-top: 16px !important;
+      padding-bottom: 16px !important;
       animation: marqueeForward 40s linear infinite;
     }
     .game-marquee-track:hover {
@@ -160,6 +164,8 @@
       flex-wrap: nowrap !important;
       width: max-content !important;
       align-items: center !important;
+      padding-top: 16px !important;
+      padding-bottom: 16px !important;
       animation: marqueeBackward 44s linear infinite;
     }
     .game-marquee-track-rev:hover {
@@ -173,78 +179,27 @@
       flex-shrink: 0 !important;
       border-radius: 20px !important;
       overflow: hidden !important;
-      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
       background: #0D111A !important;
       position: relative !important;
       display: block !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
     .game-card-vault:hover {
-      transform: translateY(-8px) scale(1.03) !important;
+      transform: translateY(-6px) !important;
       border-color: rgba(45, 198, 255, 0.6) !important;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(45, 198, 255, 0.3) !important;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(45, 198, 255, 0.35) !important;
     }
     .game-card-vault img {
       width: 100% !important;
       height: 100% !important;
       object-fit: cover !important;
       display: block !important;
+      border-radius: 19px !important;
     }
 
-
-
-    .split-slider-container {
-      position: relative;
-      overflow: hidden;
-      border-radius: 20px;
-      user-select: none;
-      -webkit-user-select: none;
-    }
-    .split-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 10;
-    }
-    .split-divider {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: #2DC6FF;
-      transform: translateX(-50%);
-      pointer-events: none;
-      z-index: 25;
-    }
-    .split-handle {
-      position: absolute;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: #2DC6FF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #040608;
-      cursor: ew-resize;
-      z-index: 30;
-      touch-action: none;
-    }
-
-    @keyframes circleProgress {
-      0% { stroke-dashoffset: 280; }
-      50% { stroke-dashoffset: 155; }
-      100% { stroke-dashoffset: 280; }
-    }
-    .progress-ring {
-      animation: circleProgress 4s ease-in-out infinite;
-    }
-
+    /* Review Cards & Tracks with Zero Hover Clipping */
     @keyframes marqueeReview {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
@@ -254,81 +209,46 @@
       100% { transform: translateX(0); }
     }
     .reviews-track {
-      display: flex;
-      width: max-content;
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      width: max-content !important;
+      align-items: center !important;
+      padding-top: 18px !important;
+      padding-bottom: 18px !important;
       animation: marqueeReview 40s linear infinite;
     }
     .reviews-track:hover { animation-play-state: paused; }
     .reviews-track-rev {
-      display: flex;
-      width: max-content;
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      width: max-content !important;
+      align-items: center !important;
+      padding-top: 18px !important;
+      padding-bottom: 18px !important;
       animation: marqueeReviewReverse 44s linear infinite;
     }
     .reviews-track-rev:hover { animation-play-state: paused; }
 
     .review-card {
-      background: #0D111A;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
-      padding: 24px;
-      width: 360px;
-      flex-shrink: 0;
-      transition: all 0.25s ease;
-      user-select: none;
+      background: #0D111A !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      border-radius: 20px !important;
+      padding: 24px !important;
+      width: 360px !important;
+      flex-shrink: 0 !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      user-select: none !important;
     }
     .review-card:hover {
-      border-color: rgba(45, 198, 255, 0.35);
-      background: #121824;
-      transform: translateY(-2px);
+      border-color: rgba(45, 198, 255, 0.5) !important;
+      background: #121824 !important;
+      transform: translateY(-4px) !important;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(45, 198, 255, 0.2) !important;
     }
 
-    .hero-characters-bg {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-      max-width: 1300px;
-      height: 100%;
-      background-image: url('https://division.b-cdn.net/bg.webp');
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      opacity: 0.25;
-      pointer-events: none;
-      z-index: 0;
-      mask-image: radial-gradient(circle, black 40%, transparent 78%);
-      -webkit-mask-image: radial-gradient(circle, black 40%, transparent 78%);
-    }
-
-    /* Toast Notification Animation */
-    .toast-enter {
-      transform: translateY(100px);
-      opacity: 0;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .toast-visible {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    .toast-exit {
-      transform: translateY(20px);
-      opacity: 0;
-      transition: all 0.3s ease;
-    }
-
-    /* Accordion Grid Animation */
-    .faq-content {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows 0.3s ease-out;
-    }
-    .faq-item.open .faq-content {
-      grid-template-rows: 1fr;
-    }
-    .faq-item.open .faq-chevron {
-      transform: rotate(180deg);
-    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col antialiased select-none">
@@ -936,7 +856,7 @@
     </div>
 
     <div class="space-y-6">
-      <div class="overflow-hidden mask-fade relative">
+      <div class="overflow-hidden mask-fade relative py-2">
         <div class="reviews-track gap-6">
           
     <div class="review-card flex flex-col justify-between">
@@ -1301,7 +1221,7 @@
     
         </div>
       </div>
-      <div class="overflow-hidden mask-fade relative">
+      <div class="overflow-hidden mask-fade relative py-2">
         <div class="reviews-track-rev gap-6">
           
     <div class="review-card flex flex-col justify-between">
