@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>3D Optic Eye Prototype</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background: #040608;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: white;
+      font-family: sans-serif;
+      overflow: hidden;
+    }
+    #opticEyeCanvas {
+      width: 440px;
+      height: 320px;
+      cursor: grab;
+    }
+  </style>
+</head>
+<body>
+  <div id="opticEyeContainer" style="position:relative; width:440px; height:320px;">
+    <canvas id="opticEyeCanvas"></canvas>
+  </div>
+  <h1 style="margin-top:20px; font-size:32px; font-weight:900; letter-spacing:1px;">
+    <span style="color:#7182FF;">OPTIC</span> CHEATS
+  </h1>
+
+  <script>
+    const container = document.getElementById('opticEyeContainer');
+    const canvas = document.getElementById('opticEyeCanvas');
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(45, 440 / 320, 0.1, 1000);
+    camera.position.z = 8;
+
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+    renderer.setSize(440, 320);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    // Group for whole eye
+    const eyeGroup = new THREE.Group();
+    scene.add(eyeGroup);
+
+    // 1. Crescent Moon Pupil (Extruded 2D Shape in 3D space)
+    const moonShape = new THREE.Shape();
+    // Outer circle arc
+    moonShape.absarc(0, 0, 1.2, 0, Math.PI * 2, false);
+    // Inner cutout arc (crescent subtraction)
+    const holePath = new THREE.Path();
+    holePath.absarc(0.48, 0.28, 0.95, 0, Math.PI * 2, true);
+    moonShape.holes.push(holePath);
+
+    const extrudeSettings = {
+      depth: 0.28,
+      bevelEnabled: true,
+      bevelSegments: 8,
+      steps: 2,
+      bevelSize: 0.08,
+      bevelThickness: 0.08
+    };
+
+    const moonGeom = new THREE.ExtrudeGeometry(moonShape, extrudeSettings);
+    moonGeom.center();
+
+    const moonMat = new THREE.MeshPhysicalMaterial({
+      color: 0x7182FF,
+      emissive: 0x4a5bcc,
+      emissiveIntensity: 0.75,
+      metalness: 0.2,
+      roughness: 0.15,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.1
+    });
+
+    const moonMesh = new THREE.Mesh(moonGeom, moonMat);
+    moonMesh.scale.set(0.62, 0.62, 0.62);
+    moonMesh.rotation.z = 0.2;
+    eyeGroup.add(moonMesh);
+
+    // 2. Glowing Core Sphere behind pupil
+    const coreGeom = new THREE.SphereGeometry(0.85, 32, 32);
+    const coreMat = new THREE.MeshBasicMaterial({
+      color: 0x7182FF,
+      transparent: true,
+      opacity: 0.15,
+      wireframe: true
+    });
+    const coreMesh = new THREE.Mesh(coreGeom, coreMat);
+    eyeGroup.add(coreMesh);
+
+    // 3. Curved Eyelid Blades (Top & Bottom sleek aerodynamic wings)
+    function createBladeShape(isTop) {
+      const shape = new THREE.Shape();
+      if (isTop) {
+        // Upper wing
+        shape.moveTo(-3.0, 0);
+        shape.quadraticCurveTo(0, 2.2, 3.0, 0);
+        shape.quadraticCurveTo(0.2, 1.3, -3.0, 0);
+      } else {
+        // Lower wing
+        shape.moveTo(-3.0, 0);
+        shape.quadraticCurveTo(0, -2.2, 3.0, 0);
+        shape.quadraticCurveTo(0.2, -1.3, -3.0, 0);
+      }
+      return shape;
+    }
+
+    const bladeExtrude = {
+      depth: 0.2,
+      bevelEnabled: true,
+      bevelSegments: 6,
+      steps: 2,
+      bevelSize: 0.06,
+      bevelThickness: 0.06
+    };
+
+    const topBladeGeom = new THREE.ExtrudeGeometry(createBladeShape(true), bladeExtrude);
+    topBladeGeom.center();
+    const bottomBladeGeom = new THREE.ExtrudeGeometry(createBladeShape(false), bladeExtrude);
+    bottomBladeGeom.center();
+
+    const bladeMat = new THREE.MeshPhysicalMaterial({
+      color: 0xFFFFFF,
+      emissive: 0x1a2040,
+      emissiveIntensity: 0.3,
+      metalness: 0.9,
+      roughness: 0.15,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.1
+    });
+
+    const topBlade = new THREE.Mesh(topBladeGeom, bladeMat);
+    topBlade.position.y = 0.72;
+    topBlade.scale.set(0.9, 0.9, 0.9);
+    eyeGroup.add(topBlade);
+
+    const bottomBlade = new THREE.Mesh(bottomBladeGeom, bladeMat);
+    bottomBlade.position.y = -0.72;
+    bottomBlade.scale.set(0.9, 0.9, 0.9);
+    eyeGroup.add(bottomBlade);
+
+    // 4. Outer Cyber Rings / Orbital Rings with floating particles
+    const ringGeom = new THREE.TorusGeometry(2.3, 0.02, 16, 100);
+    const ringMat = new THREE.MeshBasicMaterial({
+      color: 0x7182FF,
+      transparent: true,
+      opacity: 0.4
+    });
+    const ringMesh = new THREE.Mesh(ringGeom, ringMat);
+    ringMesh.rotation.x = Math.PI / 2.8;
+    eyeGroup.add(ringMesh);
+
+    // 5. Lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
+
+    const blueLight = new THREE.PointLight(0x7182FF, 3.5, 50);
+    blueLight.position.set(2, 3, 4);
+    scene.add(blueLight);
+
+    const backBlueLight = new THREE.PointLight(0x5D6EFF, 2.0, 50);
+    backBlueLight.position.set(-3, -2, -2);
+    scene.add(backBlueLight);
+
+    const whiteLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    whiteLight.position.set(0, 5, 5);
+    scene.add(whiteLight);
+
+    // Mouse Tracking Physics with smooth damping
+    let mouseX = 0, mouseY = 0;
+    let targetRotX = 0, targetRotY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      mouseX = (e.clientX - cx) / (window.innerWidth / 2);
+      mouseY = (e.clientY - cy) / (window.innerHeight / 2);
+      
+      targetRotY = mouseX * 0.45;
+      targetRotX = -mouseY * 0.35;
+    });
+
+    // Animation Loop
+    let clock = new THREE.Clock();
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const elapsed = clock.getElapsedTime();
+
+      // Smooth mouse follow interpolation
+      eyeGroup.rotation.y += (targetRotY - eyeGroup.rotation.y) * 0.06;
+      eyeGroup.rotation.x += (targetRotX - eyeGroup.rotation.x) * 0.06;
+
+      // Subtle floating breath motion
+      eyeGroup.position.y = Math.sin(elapsed * 1.5) * 0.12;
+
+      // Ring gentle rotation
+      ringMesh.rotation.z = elapsed * 0.2;
+      
+      // Pupil subtle magnetic tilt
+      moonMesh.rotation.z = 0.2 + Math.sin(elapsed * 2) * 0.08;
+
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Optic 3D Eye</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background: #040608;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: white;
+      font-family: sans-serif;
+      overflow: hidden;
+    }
+    #eyeBox {
+      width: 500px;
+      height: 360px;
+      position: relative;
+    }
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="eyeBox">
+    <canvas id="c"></canvas>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('c');
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(40, 500 / 360, 0.1, 100);
+    camera.position.set(0, 0, 8.5);
+
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+    renderer.setSize(500, 360);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
+
+    const eyeMaster = new THREE.Group();
+    scene.add(eyeMaster);
+
+    // 1. Sleek Upper Eyelid Blade (Precise Bezier matching the Optic Logo)
+    const topBladeShape = new THREE.Shape();
+    topBladeShape.moveTo(-3.2, -0.05);
+    topBladeShape.bezierCurveTo(-1.8, 1.9, 1.2, 2.3, 3.4, 0.0);
+    topBladeShape.bezierCurveTo(1.6, 0.5, -0.4, 0.35, -1.8, -0.85);
+    topBladeShape.bezierCurveTo(-2.4, -0.5, -2.9, -0.2, -3.2, -0.05);
+
+    // 2. Sleek Lower Eyelid Blade
+    const bottomBladeShape = new THREE.Shape();
+    bottomBladeShape.moveTo(3.2, 0.05);
+    bottomBladeShape.bezierCurveTo(1.8, -1.9, -1.2, -2.3, -3.4, -0.0);
+    bottomBladeShape.bezierCurveTo(-1.6, -0.5, 0.4, -0.35, 1.8, 0.85);
+    bottomBladeShape.bezierCurveTo(2.4, 0.5, 2.9, 0.2, 3.2, 0.05);
+
+    const bladeExtrude = {
+      depth: 0.25,
+      bevelEnabled: true,
+      bevelSegments: 12,
+      steps: 2,
+      bevelSize: 0.08,
+      bevelThickness: 0.08
+    };
+
+    const topGeom = new THREE.ExtrudeGeometry(topBladeShape, bladeExtrude);
+    topGeom.center();
+    const bottomGeom = new THREE.ExtrudeGeometry(bottomBladeShape, bladeExtrude);
+    bottomGeom.center();
+
+    const whiteMat = new THREE.MeshPhysicalMaterial({
+      color: 0xFFFFFF,
+      emissive: 0x181c30,
+      emissiveIntensity: 0.2,
+      roughness: 0.12,
+      metalness: 0.85,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.1,
+      reflectivity: 0.9
+    });
+
+    const topMesh = new THREE.Mesh(topGeom, whiteMat);
+    topMesh.position.set(-0.1, 0.45, 0);
+    topMesh.scale.set(0.92, 0.92, 0.92);
+    eyeMaster.add(topMesh);
+
+    const bottomMesh = new THREE.Mesh(bottomGeom, whiteMat);
+    bottomMesh.position.set(0.1, -0.45, 0);
+    bottomMesh.scale.set(0.92, 0.92, 0.92);
+    eyeMaster.add(bottomMesh);
+
+    // 3. Central Crescent Moon Pupil (Deep 3D Extrusion)
+    const moonShape = new THREE.Shape();
+    moonShape.absarc(0, 0, 1.15, 0, Math.PI * 2, false);
+    const moonHole = new THREE.Path();
+    moonHole.absarc(0.48, 0.28, 0.92, 0, Math.PI * 2, true);
+    moonShape.holes.push(moonHole);
+
+    const moonGeom = new THREE.ExtrudeGeometry(moonShape, {
+      depth: 0.35,
+      bevelEnabled: true,
+      bevelSegments: 12,
+      steps: 2,
+      bevelSize: 0.07,
+      bevelThickness: 0.07
+    });
+    moonGeom.center();
+
+    const moonMat = new THREE.MeshPhysicalMaterial({
+      color: 0x7182FF,
+      emissive: 0x5D6EFF,
+      emissiveIntensity: 0.8,
+      roughness: 0.1,
+      metalness: 0.3,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.05
+    });
+
+    const pupilGroup = new THREE.Group();
+    const moonMesh = new THREE.Mesh(moonGeom, moonMat);
+    moonMesh.scale.set(0.68, 0.68, 0.68);
+    moonMesh.rotation.z = 0.25;
+    pupilGroup.add(moonMesh);
+
+    // Glowing Iris Ring behind pupil
+    const irisRingGeom = new THREE.TorusGeometry(0.95, 0.03, 16, 64);
+    const irisRingMat = new THREE.MeshBasicMaterial({
+      color: 0x7182FF,
+      transparent: true,
+      opacity: 0.65
+    });
+    const irisRing = new THREE.Mesh(irisRingGeom, irisRingMat);
+    pupilGroup.add(irisRing);
+
+    eyeMaster.add(pupilGroup);
+
+    // 4. Optical Cornea Glass Dome (Transparent Refractive Lens)
+    const corneaGeom = new THREE.SphereGeometry(1.6, 48, 48, 0, Math.PI * 2, 0, Math.PI * 0.48);
+    corneaGeom.center();
+    const corneaMat = new THREE.MeshPhysicalMaterial({
+      color: 0xFFFFFF,
+      transparent: true,
+      opacity: 0.25,
+      roughness: 0.05,
+      transmission: 0.9,
+      ior: 1.5,
+      reflectivity: 0.8,
+      clearcoat: 1.0
+    });
+    const cornea = new THREE.Mesh(corneaGeom, corneaMat);
+    cornea.position.z = 0.25;
+    eyeMaster.add(cornea);
+
+    // 5. Orbital Holographic Particles / Rings
+    const orbitGeom = new THREE.TorusGeometry(3.0, 0.015, 16, 120);
+    const orbitMat = new THREE.MeshBasicMaterial({
+      color: 0x7182FF,
+      transparent: true,
+      opacity: 0.25
+    });
+    const orbitRing = new THREE.Mesh(orbitGeom, orbitMat);
+    orbitRing.rotation.x = Math.PI / 2.6;
+    eyeMaster.add(orbitRing);
+
+    // 6. Dynamic Studio Lighting
+    const ambLight = new THREE.AmbientLight(0xffffff, 0.7);
+    scene.add(ambLight);
+
+    const keyLight = new THREE.DirectionalLight(0xffffff, 2.5);
+    keyLight.position.set(4, 6, 6);
+    scene.add(keyLight);
+
+    const rimBlue = new THREE.PointLight(0x7182FF, 6.0, 25);
+    rimBlue.position.set(-4, -3, 3);
+    scene.add(rimBlue);
+
+    const pupilLight = new THREE.PointLight(0x7182FF, 4.0, 15);
+    pupilLight.position.set(0, 0, 2);
+    eyeMaster.add(pupilLight);
+
+    // Mouse Tracking Physics with smooth lag
+    let mouseX = 0, mouseY = 0;
+    let targetX = 0, targetY = 0;
+    let targetPupilX = 0, targetPupilY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      mouseX = (e.clientX - cx) / (window.innerWidth / 2);
+      mouseY = (e.clientY - cy) / (window.innerHeight / 2);
+
+      targetY = mouseX * 0.45;
+      targetX = -mouseY * 0.35;
+
+      // Pupil looks further into the mouse direction (parallax)
+      targetPupilX = mouseX * 0.3;
+      targetPupilY = -mouseY * 0.25;
+    });
+
+    const clock = new THREE.Clock();
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const t = clock.getElapsedTime();
+
+      // Smooth eye rotation towards mouse
+      eyeMaster.rotation.y += (targetY - eyeMaster.rotation.y) * 0.07;
+      eyeMaster.rotation.x += (targetX - eyeMaster.rotation.x) * 0.07;
+
+      // Independent pupil parallax motion
+      pupilGroup.position.x += (targetPupilX - pupilGroup.position.x) * 0.09;
+      pupilGroup.position.y += (targetPupilY - pupilGroup.position.y) * 0.09;
+
+      // Organic floating breath
+      eyeMaster.position.y = Math.sin(t * 1.6) * 0.12;
+
+      // Orbit spin
+      orbitRing.rotation.z = t * 0.15;
+
+      // Subtle pupil breathing pulsation
+      const s = 0.68 + Math.sin(t * 2.5) * 0.02;
+      moonMesh.scale.set(s, s, s);
+
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+</body>
+</html>

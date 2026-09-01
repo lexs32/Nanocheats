@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>3D Spinning Optic Eye</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background: #040608;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: white;
+      font-family: sans-serif;
+      overflow: hidden;
+    }
+    #opticEyeStage {
+      width: 520px;
+      height: 360px;
+      position: relative;
+    }
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="opticEyeStage">
+    <canvas id="opticCanvas"></canvas>
+  </div>
+  <h1 style="margin-top: 10px; font-size: 32px; font-weight: 900; letter-spacing: -0.5px;">
+    <span style="color: #7182FF;">OPTIC</span> CHEATS
+  </h1>
+
+  <script>
+    const contourData = {"blades": [[[-0.021484375, -0.287109375], [-0.119140625, -0.267578125], [-0.20703125, -0.224609375], [-0.291015625, -0.162109375], [-0.4375, -0.025390625], [-0.48828125, -0.0], [-0.4375, 0.025390625], [-0.291015625, 0.162109375], [-0.20703125, 0.224609375], [-0.119140625, 0.267578125], [-0.021484375, 0.287109375], [-0.150390625, 0.296875], [-0.212890625, 0.2890625], [-0.267578125, 0.2734375], [-0.349609375, 0.232421875], [-0.501953125, 0.1171875], [-0.58984375, 0.060546875], [-0.669921875, 0.0234375], [-0.751953125, -0.0], [-0.669921875, -0.0234375], [-0.58984375, -0.060546875], [-0.494140625, -0.123046875], [-0.349609375, -0.232421875], [-0.267578125, -0.2734375], [-0.212890625, -0.2890625], [-0.150390625, -0.296875]], [[-0.142578125, 0.359375], [-0.048828125, 0.345703125], [0.07421875, 0.2890625], [0.185546875, 0.203125], [0.349609375, 0.041015625], [0.388671875, 0.01171875], [0.419921875, -0.0], [0.388671875, -0.01171875], [0.3515625, -0.0390625], [0.19140625, -0.197265625], [0.076171875, -0.287109375], [-0.044921875, -0.34375], [-0.142578125, -0.359375], [0.01171875, -0.373046875], [0.099609375, -0.361328125], [0.166015625, -0.33984375], [0.267578125, -0.283203125], [0.44140625, -0.14453125], [0.53515625, -0.080078125], [0.638671875, -0.029296875], [0.736328125, -0.0], [0.654296875, 0.0234375], [0.5390625, 0.078125], [0.431640625, 0.15234375], [0.271484375, 0.28125], [0.16796875, 0.33984375], [0.103515625, 0.361328125], [0.02734375, 0.373046875], [-0.048828125, 0.373046875]]], "pupil": [[[-0.0625, 0.162109375], [-0.087890625, 0.154296875], [-0.115234375, 0.140625], [-0.12890625, 0.130859375], [-0.16015625, 0.09765625], [-0.17578125, 0.0703125], [-0.185546875, 0.041015625], [-0.189453125, 0.015625], [-0.1875, -0.0234375], [-0.177734375, -0.056640625], [-0.162109375, -0.0859375], [-0.1484375, -0.103515625], [-0.119140625, -0.12890625], [-0.08984375, -0.14453125], [-0.06640625, -0.15234375], [-0.041015625, -0.15625], [0.0, -0.154296875], [0.033203125, -0.14453125], [0.0625, -0.12890625], [0.0859375, -0.109375], [0.099609375, -0.09375], [0.123046875, -0.05078125], [0.130859375, -0.021484375], [0.1328125, 0.001953125], [0.099609375, -0.025390625], [0.080078125, -0.03515625], [0.04296875, -0.044921875], [0.01953125, -0.044921875], [-0.005859375, -0.0390625], [-0.03125, -0.025390625], [-0.052734375, -0.001953125], [-0.0625, 0.0234375], [-0.0625, 0.0546875], [-0.0546875, 0.078125], [-0.041015625, 0.099609375], [-0.009765625, 0.12890625], [0.021484375, 0.14453125], [0.04296875, 0.1484375], [0.013671875, 0.16015625], [-0.005859375, 0.1640625]]]};
+
+    const canvas = document.getElementById('opticCanvas');
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(38, 520 / 360, 0.1, 100);
+    camera.position.set(0, 0, 7.2);
+
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+    renderer.setSize(520, 360);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.35;
+
+    const eyeMaster = new THREE.Group();
+    scene.add(eyeMaster);
+
+    const SCALE = 3.6;
+
+    // Helper to build 3D extruded geometry preserving exact relative coordinates
+    function buildExtruded(pts, depth, bevel) {
+      const shape = new THREE.Shape();
+      shape.moveTo(pts[0][0] * SCALE, pts[0][1] * SCALE);
+      for (let i = 1; i < pts.length; i++) {
+        shape.lineTo(pts[i][0] * SCALE, pts[i][1] * SCALE);
+      }
+      shape.closePath();
+
+      const geom = new THREE.ExtrudeGeometry(shape, {
+        depth: depth,
+        bevelEnabled: true,
+        bevelSegments: 6,
+        steps: 1,
+        bevelSize: bevel,
+        bevelThickness: bevel
+      });
+      // Center depth ONLY on Z-axis so it rotates cleanly
+      geom.translate(0, 0, -depth / 2);
+      return geom;
+    }
+
+    // 1. Blade Materials (Pure white metallic luxury with chrome bevel sheen)
+    const bladeMat = new THREE.MeshPhysicalMaterial({
+      color: 0xFFFFFF,
+      emissive: 0x202844,
+      emissiveIntensity: 0.25,
+      roughness: 0.12,
+      metalness: 0.92,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.08,
+      reflectivity: 0.95
+    });
+
+    // Add both top and bottom blades
+    contourData.blades.forEach(bladePts => {
+      const geom = buildExtruded(bladePts, 0.24, 0.045);
+      const mesh = new THREE.Mesh(geom, bladeMat);
+      eyeMaster.add(mesh);
+    });
+
+    // 2. Pupil Crescent (Vibrant glowing #7182FF periwinkle)
+    const pupilMat = new THREE.MeshPhysicalMaterial({
+      color: 0x7182FF,
+      emissive: 0x7182FF,
+      emissiveIntensity: 0.95,
+      roughness: 0.1,
+      metalness: 0.35,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.05
+    });
+
+    contourData.pupil.forEach(pupilPts => {
+      const geom = buildExtruded(pupilPts, 0.28, 0.05);
+      const mesh = new THREE.Mesh(geom, pupilMat);
+      eyeMaster.add(mesh);
+    });
+
+    // 3. Subtle Cybernetic Gyro Halo Rings
+    const ringGeo = new THREE.TorusGeometry(2.6, 0.012, 16, 120);
+    const ringMat = new THREE.MeshBasicMaterial({
+      color: 0x7182FF,
+      transparent: true,
+      opacity: 0.3,
+      blending: THREE.AdditiveBlending
+    });
+    const ring1 = new THREE.Mesh(ringGeo, ringMat);
+    ring1.rotation.x = Math.PI / 2.3;
+    eyeMaster.add(ring1);
+
+    // 4. Lighting Setup (Dual-sided for 360 spin)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+    scene.add(ambientLight);
+
+    const frontLight = new THREE.DirectionalLight(0xffffff, 2.5);
+    frontLight.position.set(4, 5, 6);
+    scene.add(frontLight);
+
+    const backLight = new THREE.DirectionalLight(0xffffff, 2.0);
+    backLight.position.set(-4, -5, -6);
+    scene.add(backLight);
+
+    const cyanPoint = new THREE.PointLight(0x7182FF, 5.0, 25);
+    cyanPoint.position.set(0, 0, 3);
+    eyeMaster.add(cyanPoint);
+
+    // Mouse Parallax
+    let mouseX = 0, mouseY = 0;
+    let targetTiltX = 0, targetTiltZ = 0;
+
+    window.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      mouseX = (e.clientX - cx) / (window.innerWidth / 2);
+      mouseY = (e.clientY - cy) / (window.innerHeight / 2);
+
+      targetTiltX = -mouseY * 0.35;
+      targetTiltZ = -mouseX * 0.2;
+    });
+
+    const clock = new THREE.Clock();
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const delta = clock.getDelta();
+      const t = clock.getElapsedTime();
+
+      // Continuous 3D Spinning on Y axis
+      eyeMaster.rotation.y += delta * 1.5;
+
+      // Mouse interactive tilt
+      eyeMaster.rotation.x += (targetTiltX - eyeMaster.rotation.x) * 0.08;
+      eyeMaster.rotation.z += (targetTiltZ - eyeMaster.rotation.z) * 0.08;
+
+      // Floating breath motion
+      eyeMaster.position.y = Math.sin(t * 1.8) * 0.12;
+      ring1.rotation.z = t * 0.3;
+
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+</body>
+</html>
