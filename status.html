@@ -81,6 +81,31 @@
     
     
 
+  
+    /* Skeleton Shimmer Animation */
+    @keyframes skeletonPulse {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .skeleton-shimmer {
+      background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(113,130,255,0.12) 50%, rgba(255,255,255,0.04) 75%);
+      background-size: 200% 100%;
+      animation: skeletonPulse 1.4s ease-in-out infinite;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.12);
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #7182FF;
+    }
+
   </style>
 </head>
 <body class="select-none" class="min-h-screen flex flex-col antialiased">
@@ -427,6 +452,7 @@
     // Interactive Electricity Canvas Background
     (function() {
       const canvas = document.getElementById('nanoCanvas');
+      if (!canvas) return;
       const ctx = canvas.getContext('2d');
       let width, height;
 
@@ -524,5 +550,239 @@
 
     
 </script>
+
+  <script>
+    // 1. Rock-Solid Streamproof Comparison Slider (Touch & Mouse Drag)
+    (function() {
+      const box = document.getElementById('splitBox');
+      const handle = document.getElementById('splitHandle');
+      if (!box) return;
+
+      let isDragging = false;
+
+      function setSplitPercent(clientX) {
+        const rect = box.getBoundingClientRect();
+        let pos = (clientX - rect.left) / rect.width;
+        pos = Math.max(0.01, Math.min(0.99, pos));
+        const val = (pos * 100).toFixed(2) + '%';
+        box.style.setProperty('--split', val);
+      }
+
+      function onStart(e) {
+        isDragging = true;
+        e.preventDefault();
+        const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+        setSplitPercent(clientX);
+      }
+
+      function onMove(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+        const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+        setSplitPercent(clientX);
+      }
+
+      function onEnd() {
+        isDragging = false;
+      }
+
+      box.addEventListener('mousedown', onStart);
+      window.addEventListener('mousemove', onMove);
+      window.addEventListener('mouseup', onEnd);
+
+      box.addEventListener('touchstart', onStart, { passive: false });
+      window.addEventListener('touchmove', onMove, { passive: false });
+      window.addEventListener('touchend', onEnd);
+    })();
+
+    
+
+
+</script>
+
+  <!-- Authoritative Search & Command Palette Script -->
+  <script>
+    let searchDebounceTimer = null;
+    let selectedIndex = 0;
+
+    function getCatalog() {
+      if (typeof allProducts !== 'undefined' && Array.isArray(allProducts) && allProducts.length > 0) {
+        return allProducts;
+      }
+      return [
+        { key: "rust", title: "Optic Rust Cheat", imageURL: "https://division.b-cdn.net/card1.webp", price: "11.95" },
+        { key: "arc-raiders", title: "Optic Arc Raiders Cheat", imageURL: "https://division.b-cdn.net/card3.webp", price: "12.95" },
+        { key: "fortnite", title: "Optic Fortnite Cheat", imageURL: "https://division.b-cdn.net/card4.webp", price: "11.95" },
+        { key: "rainbow-six", title: "Optic Rainbow Six Cheat", imageURL: "https://division.b-cdn.net/card8.webp", price: "12.95" },
+        { key: "apex-legends", title: "Optic Apex Legends Cheat", imageURL: "https://division.b-cdn.net/card7.webp", price: "8.95" },
+        { key: "delta-force", title: "Optic Delta Force Cheat", imageURL: "https://division.b-cdn.net/deltacard.webp", price: "14.95" },
+        { key: "marvel-rivals", title: "Optic Marvel Rivals Cheat", imageURL: "https://division.b-cdn.net/card5.webp", price: "14.95" },
+        { key: "hell-let-loose-vietnam", title: "Optic Hell Let Loose Vietnam", imageURL: "https://division.b-cdn.net/card12.webp", price: "14.95" },
+        { key: "pubg", title: "Optic PUBG Cheat", imageURL: "https://division.b-cdn.net/card13.webp", price: "14.95" },
+        { key: "call-of-duty-black-ops-7", title: "Optic Call of Duty: Black Ops 6", imageURL: "https://division.b-cdn.net/card1415.webp", price: "19.95" },
+        { key: "dark-and-darker", title: "Optic Dark and Darker Cheat", imageURL: "https://division.b-cdn.net/card15.webp", price: "14.95" },
+        { key: "squad", title: "Optic Squad Cheat", imageURL: "https://division.b-cdn.net/card10.webp", price: "19.95" },
+        { key: "dead-by-daylight", title: "Optic Dead by Daylight Cheat", imageURL: "https://division.b-cdn.net/card6.webp", price: "14.95" },
+        { key: "deadlock", title: "Optic Deadlock Cheat", imageURL: "https://division.b-cdn.net/card9.webp", price: "14.95" }
+      ];
+    }
+
+    function openSearchModal() {
+      const modal = document.getElementById('searchModal');
+      const box = document.getElementById('searchModalBox');
+      const input = document.getElementById('modalSearchInput');
+      if (!modal || !box) return;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      
+      requestAnimationFrame(() => {
+        modal.classList.remove('opacity-0');
+        box.classList.remove('scale-95');
+        box.classList.add('scale-100');
+        if (input) {
+          input.value = '';
+          input.focus();
+        }
+        renderSearchResults('');
+      });
+    }
+
+    function closeSearchModal() {
+      const modal = document.getElementById('searchModal');
+      const box = document.getElementById('searchModalBox');
+      if (!modal || !box) return;
+
+      modal.classList.add('opacity-0');
+      box.classList.remove('scale-100');
+      box.classList.add('scale-95');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }, 200);
+    }
+
+    // Keyboard navigation (Cmd+K / Ctrl+K / Up / Down / Enter / Esc)
+    window.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        openSearchModal();
+      }
+      if (e.key === 'Escape') {
+        closeSearchModal();
+      }
+      const resultsContainer = document.getElementById('searchResults');
+      const items = resultsContainer ? resultsContainer.querySelectorAll('.search-item-card') : [];
+      if (!items.length) return;
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        selectedIndex = (selectedIndex + 1) % items.length;
+        updateItemSelection(items);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        selectedIndex = (selectedIndex - 1 + items.length) % items.length;
+        updateItemSelection(items);
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (items[selectedIndex]) {
+          items[selectedIndex].click();
+        }
+      }
+    });
+
+    function updateItemSelection(items) {
+      items.forEach((item, idx) => {
+        if (idx === selectedIndex) {
+          item.classList.add('bg-[#7182FF]/20', 'border-[#7182FF]/60');
+          item.scrollIntoView({ block: 'nearest' });
+        } else {
+          item.classList.remove('bg-[#7182FF]/20', 'border-[#7182FF]/60');
+        }
+      });
+    }
+
+    function setSearchTag(tag) {
+      const input = document.getElementById('modalSearchInput');
+      if (!input) return;
+      input.value = tag;
+      handleSearchInput(tag);
+    }
+
+    function handleSearchInput(query) {
+      const skeletons = document.getElementById('searchSkeletons');
+      const results = document.getElementById('searchResults');
+      
+      clearTimeout(searchDebounceTimer);
+      
+      if (skeletons) skeletons.classList.remove('hidden');
+      if (results) results.classList.add('hidden');
+
+      searchDebounceTimer = setTimeout(() => {
+        if (skeletons) skeletons.classList.add('hidden');
+        if (results) results.classList.remove('hidden');
+        renderSearchResults(query);
+      }, 130);
+    }
+
+    function renderSearchResults(query) {
+      const container = document.getElementById('searchResults');
+      if (!container) return;
+
+      const catalog = getCatalog();
+      const q = query.trim().toLowerCase();
+      
+      const filtered = q === '' ? catalog : catalog.filter(p => {
+        const title = (p.title || '').toLowerCase();
+        const slug = (p.slug || '').toLowerCase();
+        const key = (p.key || '').toLowerCase();
+        return title.includes(q) || slug.includes(q) || key.includes(q);
+      });
+
+      selectedIndex = 0;
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="py-10 text-center flex flex-col items-center justify-center">
+            <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-slate-500 mb-3">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <p class="text-sm font-semibold text-white">No cheats found for "${query}"</p>
+            <p class="text-xs text-slate-500 mt-1">Check your spelling or browse our full catalog.</p>
+            <a href="index.html#games" onclick="closeSearchModal()" class="mt-4 px-4 py-2 rounded-xl bg-[#7182FF] text-[#040608] font-bold text-xs hover:bg-[#5D6EFF] transition">Browse All Cheats</a>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map((p, idx) => {
+        const minPrice = p.variants && p.variants.length ? p.variants[0].price : (p.price || '11.95');
+        const isSelected = idx === 0;
+        return `
+          <a href="product.html?game=${p.key}" class="search-item-card flex items-center gap-3.5 p-3 rounded-xl bg-white/[0.02] hover:bg-[#7182FF]/15 border ${isSelected ? 'border-[#7182FF]/60 bg-[#7182FF]/10' : 'border-white/5 hover:border-[#7182FF]/40'} transition group">
+            <div class="w-12 h-12 rounded-lg overflow-hidden border border-white/10 flex-shrink-0 bg-black/40">
+              <img src="${p.imageURL}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition">
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2">
+                <p class="text-sm font-bold text-white group-hover:text-[#7182FF] transition truncate">${p.title}</p>
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#09ca8d]/10 text-[#09ca8d] border border-[#09ca8d]/20">
+                  <span class="size-1.5 rounded-full bg-[#09ca8d] animate-pulse"></span>
+                  Undetected
+                </span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5 truncate">Instant Delivery • Streamproof • HWID Locked</p>
+            </div>
+            <div class="flex items-center gap-2 flex-shrink-0">
+              <span class="text-xs font-mono font-bold text-slate-200">From €${minPrice}</span>
+              <div class="w-7 h-7 rounded-full bg-white/5 group-hover:bg-[#7182FF] group-hover:text-[#040608] text-slate-400 flex items-center justify-center transition">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+              </div>
+            </div>
+          </a>
+        `;
+      }).join('');
+    }
+  </script>
 </body>
 </html>
