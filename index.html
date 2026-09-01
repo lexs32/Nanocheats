@@ -132,50 +132,66 @@
     .pulse-animate-three { animation: pulseRingExpand 3s ease-out infinite 1.2s; }
     .pulse-animate-four { animation: pulseRingExpand 3s ease-out infinite 1.8s; }
 
-    /* High-Definition 3D Carousel (ZERO CSS BLUR, RAZOR SHARP) */
-    .mr-container {
-      width: 100%;
-      height: 400px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: visible;
-      position: relative;
-      z-index: 1;
-      user-select: none;
-      -webkit-user-select: none;
-      touch-action: none;
-      perspective: 1800px;
+    
+    
+    /* Flawless Framer Velocity Game Marquee (Horizontal Flex, Zero Glitch) */
+    @keyframes marqueeForward {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
-    .mr-inner {
-      position: absolute;
-      transform-style: preserve-3d;
-      width: 1px;
-      height: 1px;
-      top: 50%;
-      left: 50%;
-      pointer-events: none;
+    @keyframes marqueeBackward {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
     }
-    .mr-item {
-      position: absolute;
-      top: 0;
-      left: 0;
-      transform-origin: center center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
+    .game-marquee-track {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      width: max-content !important;
+      align-items: center !important;
+      animation: marqueeForward 40s linear infinite;
     }
-    .mr-item-content {
-      pointer-events: auto;
-      transition: opacity 0.2s ease, transform 0.3s ease;
-      transform: translateZ(0);
-      will-change: transform, opacity;
+    .game-marquee-track:hover {
+      animation-play-state: paused;
     }
-    .mr-grab { cursor: grab; cursor: -webkit-grab; }
-    .mr-grabbing { cursor: grabbing; cursor: -webkit-grabbing; }
+    .game-marquee-track-rev {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      width: max-content !important;
+      align-items: center !important;
+      animation: marqueeBackward 44s linear infinite;
+    }
+    .game-marquee-track-rev:hover {
+      animation-play-state: paused;
+    }
+    .game-card-vault {
+      width: 220px !important;
+      min-width: 220px !important;
+      max-width: 220px !important;
+      height: 310px !important;
+      flex-shrink: 0 !important;
+      border-radius: 20px !important;
+      overflow: hidden !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      background: #0D111A !important;
+      position: relative !important;
+      display: block !important;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .game-card-vault:hover {
+      transform: translateY(-8px) scale(1.03) !important;
+      border-color: rgba(45, 198, 255, 0.6) !important;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(45, 198, 255, 0.3) !important;
+    }
+    .game-card-vault img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+    }
+
+
 
     .split-slider-container {
       position: relative;
@@ -383,85 +399,393 @@
     </div>
   </section>
 
-  <!-- 3D Cylindrical Carousel (Ultra-Crisp Studio Retina Cards, ZERO BLUR) -->
-  <section id="games" class="relative py-12 px-4 max-w-7xl mx-auto w-full overflow-hidden scroll-mt-24">
-    <div class="text-center mb-6">
-      <h2 class="text-3xl sm:text-4xl font-bold text-white font-display">Your Cheats.</h2>
-      <p class="mt-2 text-slate-400 text-sm">Beautifully simple. Unbelievably powerful. Click any game to view features & keys.</p>
+  
+  <!-- Dual Row Infinite Velocity Game Carousel (Smooth, 100% Sharp, Zero Glitch) -->
+  <section id="games" class="relative py-14 w-full overflow-hidden scroll-mt-24">
+    <div class="text-center mb-8 px-4 max-w-4xl mx-auto">
+      <h2 class="text-3xl sm:text-5xl font-black text-white font-display tracking-tight">Your Cheats.</h2>
+      <p class="mt-3 text-slate-400 text-sm sm:text-base">Beautifully simple. Unbelievably powerful. Click any game to view instant access keys.</p>
     </div>
 
-    <div class="relative w-full flex flex-col items-center">
-      <div id="carousel3D" class="mr-container mr-grab">
-        <div id="carouselInner" class="mr-inner">
-          
-          <div class="mr-item" data-index="0">
-            <div class="mr-item-content">
-              <a href="product.html?game=rust" class="block w-[205px] sm:w-[220px] h-[295px] sm:h-[315px] rounded-2xl overflow-hidden relative shadow-2xl border border-white/15 hover:border-[#2DC6FF]/70 transition-all duration-300 group">
-                <img src="https://division.b-cdn.net/card1.webp" alt="Nano Rust" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" style="image-rendering: -webkit-optimize-contrast;">
-              </a>
+    <!-- Row 1: Forward Marquee -->
+    <div class="relative w-full overflow-hidden mb-5 py-2">
+      <div class="absolute left-0 inset-y-0 w-28 bg-gradient-to-r from-[#040608] to-transparent z-10 pointer-events-none"></div>
+      <div class="absolute right-0 inset-y-0 w-28 bg-gradient-to-l from-[#040608] to-transparent z-10 pointer-events-none"></div>
+      <div class="game-marquee-track">
+        
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=rust" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card1.webp" alt="Nano Rust" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Rust</span>
+                <span>&rarr;</span>
+              </span>
             </div>
-          </div>
-    
-          <div class="mr-item" data-index="1">
-            <div class="mr-item-content">
-              <a href="product.html?game=fortnite" class="block w-[205px] sm:w-[220px] h-[295px] sm:h-[315px] rounded-2xl overflow-hidden relative shadow-2xl border border-white/15 hover:border-[#2DC6FF]/70 transition-all duration-300 group">
-                <img src="https://division.b-cdn.net/card4.webp" alt="Nano Fortnite" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" style="image-rendering: -webkit-optimize-contrast;">
-              </a>
-            </div>
-          </div>
-    
-          <div class="mr-item" data-index="2">
-            <div class="mr-item-content">
-              <a href="product.html?game=arc-raiders" class="block w-[205px] sm:w-[220px] h-[295px] sm:h-[315px] rounded-2xl overflow-hidden relative shadow-2xl border border-white/15 hover:border-[#2DC6FF]/70 transition-all duration-300 group">
-                <img src="https://division.b-cdn.net/card3.webp" alt="Nano Arc Raiders" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" style="image-rendering: -webkit-optimize-contrast;">
-              </a>
-            </div>
-          </div>
-    
-          <div class="mr-item" data-index="3">
-            <div class="mr-item-content">
-              <a href="product.html?game=rainbow-six" class="block w-[205px] sm:w-[220px] h-[295px] sm:h-[315px] rounded-2xl overflow-hidden relative shadow-2xl border border-white/15 hover:border-[#2DC6FF]/70 transition-all duration-300 group">
-                <img src="https://division.b-cdn.net/card8.webp" alt="Nano Rainbow Six" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" style="image-rendering: -webkit-optimize-contrast;">
-              </a>
-            </div>
-          </div>
-    
-          <div class="mr-item" data-index="4">
-            <div class="mr-item-content">
-              <a href="product.html?game=apex-legends" class="block w-[205px] sm:w-[220px] h-[295px] sm:h-[315px] rounded-2xl overflow-hidden relative shadow-2xl border border-white/15 hover:border-[#2DC6FF]/70 transition-all duration-300 group">
-                <img src="https://division.b-cdn.net/card7.webp" alt="Nano Apex Legends" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" style="image-rendering: -webkit-optimize-contrast;">
-              </a>
-            </div>
-          </div>
-    
-          <div class="mr-item" data-index="5">
-            <div class="mr-item-content">
-              <a href="product.html?game=marvel-rivals" class="block w-[205px] sm:w-[220px] h-[295px] sm:h-[315px] rounded-2xl overflow-hidden relative shadow-2xl border border-white/15 hover:border-[#2DC6FF]/70 transition-all duration-300 group">
-                <img src="https://division.b-cdn.net/card5.webp" alt="Nano Marvel Rivals" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" style="image-rendering: -webkit-optimize-contrast;">
-              </a>
-            </div>
-          </div>
-    
-          <div class="mr-item" data-index="6">
-            <div class="mr-item-content">
-              <a href="product.html?game=hell-let-loose" class="block w-[205px] sm:w-[220px] h-[295px] sm:h-[315px] rounded-2xl overflow-hidden relative shadow-2xl border border-white/15 hover:border-[#2DC6FF]/70 transition-all duration-300 group">
-                <img src="https://division.b-cdn.net/hellcard.webp" alt="Nano Hell Let Loose" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" style="image-rendering: -webkit-optimize-contrast;">
-              </a>
-            </div>
-          </div>
-    
-          <div class="mr-item" data-index="7">
-            <div class="mr-item-content">
-              <a href="product.html?game=delta-force" class="block w-[205px] sm:w-[220px] h-[295px] sm:h-[315px] rounded-2xl overflow-hidden relative shadow-2xl border border-white/15 hover:border-[#2DC6FF]/70 transition-all duration-300 group">
-                <img src="https://division.b-cdn.net/deltacard.webp" alt="Nano Delta Force" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" style="image-rendering: -webkit-optimize-contrast;">
-              </a>
-            </div>
-          </div>
-    
+          </a>
         </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=arc-raiders" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card3.webp" alt="Nano Arc Raiders" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Arc Raiders</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=fortnite" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card4.webp" alt="Nano Fortnite" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Fortnite</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=rainbow-six" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card8.webp" alt="Nano Rainbow Six" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Rainbow Six</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=apex-legends" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card7.webp" alt="Nano Apex Legends" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Apex Legends</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=hell-let-loose-vietnam" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card12.webp" alt="Nano Hell Let Loose Vietnam" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Hell Let Loose Vietnam</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=pubg" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card13.webp" alt="Nano PUBG" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano PUBG</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=rust" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card1.webp" alt="Nano Rust" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Rust</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=arc-raiders" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card3.webp" alt="Nano Arc Raiders" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Arc Raiders</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=fortnite" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card4.webp" alt="Nano Fortnite" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Fortnite</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=rainbow-six" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card8.webp" alt="Nano Rainbow Six" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Rainbow Six</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=apex-legends" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card7.webp" alt="Nano Apex Legends" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Apex Legends</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=hell-let-loose-vietnam" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card12.webp" alt="Nano Hell Let Loose Vietnam" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Hell Let Loose Vietnam</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=pubg" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card13.webp" alt="Nano PUBG" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano PUBG</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Row 2: Reverse Marquee -->
+    <div class="relative w-full overflow-hidden py-2">
+      <div class="absolute left-0 inset-y-0 w-28 bg-gradient-to-r from-[#040608] to-transparent z-10 pointer-events-none"></div>
+      <div class="absolute right-0 inset-y-0 w-28 bg-gradient-to-l from-[#040608] to-transparent z-10 pointer-events-none"></div>
+      <div class="game-marquee-track-rev">
+        
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=call-of-duty-black-ops-7" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card1415.webp" alt="Nano Black Ops 6" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Black Ops 6</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=dark-and-darker" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card15.webp" alt="Nano Dark and Darker" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Dark and Darker</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=delta-force" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/deltacard.webp" alt="Nano Delta Force" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Delta Force</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=hell-let-loose" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/hellcard.webp" alt="Nano Hell Let Loose" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Hell Let Loose</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=marvel-rivals" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card5.webp" alt="Nano Marvel Rivals" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Marvel Rivals</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=squad" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card10.webp" alt="Nano Squad" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Squad</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=dead-by-daylight" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card6.webp" alt="Nano Dead by Daylight" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Dead by Daylight</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=deadlock" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card9.webp" alt="Nano Deadlock" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Deadlock</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=call-of-duty-black-ops-7" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card1415.webp" alt="Nano Black Ops 6" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Black Ops 6</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=dark-and-darker" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card15.webp" alt="Nano Dark and Darker" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Dark and Darker</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=delta-force" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/deltacard.webp" alt="Nano Delta Force" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Delta Force</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=hell-let-loose" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/hellcard.webp" alt="Nano Hell Let Loose" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Hell Let Loose</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=marvel-rivals" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card5.webp" alt="Nano Marvel Rivals" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Marvel Rivals</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=squad" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card10.webp" alt="Nano Squad" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Squad</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=dead-by-daylight" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card6.webp" alt="Nano Dead by Daylight" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Dead by Daylight</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="inline-block px-2.5 flex-shrink-0">
+          <a href="product.html?game=deadlock" class="game-card-vault block group">
+            <img src="https://division.b-cdn.net/card9.webp" alt="Nano Deadlock" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="text-xs font-bold text-white group-hover:text-[#2DC6FF] transition flex items-center gap-1.5">
+                <span>View Nano Deadlock</span>
+                <span>&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+
       </div>
     </div>
   </section>
+
 
   <!-- Bento Features Grid -->
   <section id="features" class="py-24 px-6 max-w-7xl mx-auto w-full scroll-mt-24">
@@ -1695,93 +2019,7 @@
       setInterval(showNextToast, 22000);
     }, 4000);
 
-    // 3D Cylindrical Carousel (ZERO BLUR, 100% SHARP)
-    (function() {
-      const container = document.getElementById('carousel3D');
-      const inner = document.getElementById('carouselInner');
-      const items = Array.from(document.querySelectorAll('.mr-item'));
-      const numItems = items.length;
-      const radius = 480;
-
-      let currentRotation = 0;
-      let isDragging = false;
-      let startX = 0;
-      let startRotation = 0;
-      let moved = false;
-
-      function updateItems() {
-        inner.style.transform = `rotateY(${currentRotation}deg)`;
-
-        items.forEach((item, index) => {
-          const itemAngle = (360 / numItems) * index;
-          item.style.transform = `translate(-50%, -50%) rotateY(${itemAngle}deg) translateZ(${radius}px)`;
-
-          let relativeAngle = (currentRotation + itemAngle) % 360;
-          if (relativeAngle < 0) relativeAngle += 360;
-          const diffFromFront = relativeAngle > 180 ? 360 - relativeAngle : relativeAngle;
-
-          const t = diffFromFront / 180;
-          const opacity = Math.max(0.45, 1 - t * 0.55);
-          const zIndex = Math.round((1 - t) * 100);
-
-          const content = item.querySelector('.mr-item-content');
-          if (content) {
-            content.style.opacity = opacity.toFixed(2);
-          }
-          item.style.zIndex = zIndex;
-        });
-      }
-
-      function autoSpin() {
-        if (!isDragging) {
-          currentRotation += 0.16;
-          updateItems();
-        }
-        requestAnimationFrame(autoSpin);
-      }
-
-      function onPointerDown(e) {
-        isDragging = true;
-        moved = false;
-        container.classList.remove('mr-grab');
-        container.classList.add('mr-grabbing');
-        startX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
-        startRotation = currentRotation;
-      }
-
-      function onPointerMove(e) {
-        if (!isDragging) return;
-        const x = e.clientX || (e.touches && e.touches[0].clientX) || 0;
-        const deltaX = x - startX;
-        if (Math.abs(deltaX) > 4) moved = true;
-        currentRotation = startRotation + deltaX * 0.35;
-        updateItems();
-      }
-
-      function onPointerUp() {
-        if (!isDragging) return;
-        isDragging = false;
-        container.classList.remove('mr-grabbing');
-        container.classList.add('mr-grab');
-      }
-
-      container.addEventListener('mousedown', onPointerDown);
-      window.addEventListener('mousemove', onPointerMove);
-      window.addEventListener('mouseup', onPointerUp);
-
-      container.addEventListener('touchstart', onPointerDown, { passive: true });
-      window.addEventListener('touchmove', onPointerMove, { passive: true });
-      window.addEventListener('touchend', onPointerUp);
-
-      document.querySelectorAll('.mr-item a').forEach(link => {
-        link.addEventListener('click', (e) => {
-          if (moved) e.preventDefault();
-        });
-      });
-
-      updateItems();
-      requestAnimationFrame(autoSpin);
-    })();
+    
 
     // Streamproof Split Slider Implementation
     (function() {
