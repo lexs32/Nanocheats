@@ -274,8 +274,13 @@
   <header class="sticky top-0 z-50 nav-glass py-4 px-6 md:px-12 flex items-center justify-between border-b border-white/5 select-none">
     <div class="flex items-center gap-8 lg:gap-12">
       <a href="index.html" class="flex items-center gap-3 group">
-        <img src="assets/optic_icon.png" alt="Optic Cheats" class="w-8 h-8 rounded-lg object-contain shadow-[0_0_15px_rgba(113,130,255,0.45)] group-hover:scale-105 transition">
-        <span class="font-display font-black text-xl tracking-tight text-white"><span class="text-[#7182FF]">OPTIC</span> CHEATS</span>
+        <div class="w-8 h-8 rounded-xl bg-[#090D15] border border-white/10 flex items-center justify-center p-1 shadow-[0_0_15px_rgba(113,130,255,0.35)] group-hover:border-[#7182FF]/50 transition">
+          <img src="assets/optic_icon.png" alt="Optic Eye" class="w-full h-full object-contain">
+        </div>
+        <span class="font-display font-black text-xl tracking-tight text-white flex items-center gap-1.5">
+          <span class="text-[#7182FF]">OPTIC</span>
+          <span class="text-white">CHEATS</span>
+        </span>
       </a>
 
       <!-- Horizontal Links: Turns Blue (#7182FF) on Hover -->
@@ -314,8 +319,9 @@
       <div class="w-full max-w-[440px] h-[220px] sm:h-[260px] relative -mb-2 flex items-center justify-center cursor-grab active:cursor-grabbing select-none" id="optic3dContainer">
         <canvas id="optic3dCanvas" class="w-full h-full block"></canvas>
       </div>
-      <h1 class="text-4xl sm:text-6xl font-black text-white font-display tracking-tight leading-tight">
-        <span class="text-[#7182FF]">OPTIC</span> CHEATS
+      <h1 class="text-4xl sm:text-6xl font-black font-display tracking-tight leading-tight flex items-center justify-center gap-2">
+        <span class="text-[#7182FF]">OPTIC</span>
+        <span class="text-white">CHEATS</span>
       </h1>
       <p class="mt-4 text-base sm:text-xl text-slate-400 max-w-2xl mx-auto font-normal leading-relaxed">
         Your trusted marketplace for premium, safe cheats for games like Rust, Arc Raiders, Apex Legends, and more.
@@ -2000,7 +2006,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
-    // Ultra High-Fidelity 3D Spinning Extruded Optic Cheats Eye Emblem
+    // Exact 3D Spinning Extruded Optic Cheats Eye Emblem (Pure Clean & Exact Colors)
     (function() {
       const container = document.getElementById('optic3dContainer');
       const canvas = document.getElementById('optic3dCanvas');
@@ -2016,12 +2022,12 @@
       renderer.setSize(container.offsetWidth, container.offsetHeight);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.4;
+      renderer.toneMappingExposure = 1.1;
 
       const eyeMaster = new THREE.Group();
       scene.add(eyeMaster);
 
-      const SCALE = 4.0;
+      const SCALE = 4.1;
 
       function buildExtruded(pts, depth, bevel) {
         const shape = new THREE.Shape();
@@ -2034,8 +2040,8 @@
         const geom = new THREE.ExtrudeGeometry(shape, {
           depth: depth,
           bevelEnabled: true,
-          bevelSegments: 8,
-          steps: 2,
+          bevelSegments: 6,
+          steps: 1,
           bevelSize: bevel,
           bevelThickness: bevel
         });
@@ -2043,80 +2049,47 @@
         return geom;
       }
 
-      // 1. Sleek Pure White Chrome Blades with Glowing Edge Highlights
-      const bladeMat = new THREE.MeshPhysicalMaterial({
+      // 1. Sleek Pure White Eyelid Blades (Solid #FFFFFF with gentle specular)
+      const bladeMat = new THREE.MeshStandardMaterial({
         color: 0xFFFFFF,
-        emissive: 0x303855,
-        emissiveIntensity: 0.35,
-        roughness: 0.08,
-        metalness: 0.5,
-        clearcoat: 1.0,
-        clearcoatRoughness: 0.05,
-        reflectivity: 1.0
+        roughness: 0.2,
+        metalness: 0.3
       });
 
       contourData.blades.forEach(bladePts => {
-        const geom = buildExtruded(bladePts, 0.28, 0.055);
+        const geom = buildExtruded(bladePts, 0.26, 0.045);
         const mesh = new THREE.Mesh(geom, bladeMat);
         eyeMaster.add(mesh);
       });
 
-      // 2. Glowing Neon Cyber Indigo Crescent Pupil (#7182FF)
-      const pupilMat = new THREE.MeshPhysicalMaterial({
+      // 2. Exact Vibrant Periwinkle Crescent Pupil (Solid rich #7182FF, zero wash-out)
+      const pupilMat = new THREE.MeshStandardMaterial({
         color: 0x7182FF,
-        emissive: 0x7182FF,
-        emissiveIntensity: 1.25,
-        roughness: 0.05,
-        metalness: 0.2,
-        clearcoat: 1.0,
-        clearcoatRoughness: 0.02
+        emissive: 0x4858DD,
+        emissiveIntensity: 0.5,
+        roughness: 0.2,
+        metalness: 0.1
       });
 
       contourData.pupil.forEach(pupilPts => {
-        const geom = buildExtruded(pupilPts, 0.34, 0.06);
+        const geom = buildExtruded(pupilPts, 0.30, 0.05);
         const mesh = new THREE.Mesh(geom, pupilMat);
         eyeMaster.add(mesh);
       });
 
-      // 3. Subtle Cyber Energy Orbitals (Dual Glowing Halo Rings)
-      const ringGeo = new THREE.TorusGeometry(2.8, 0.015, 16, 120);
-      const ringMat = new THREE.MeshBasicMaterial({
-        color: 0x7182FF,
-        transparent: true,
-        opacity: 0.45,
-        blending: THREE.AdditiveBlending
-      });
-      const ring1 = new THREE.Mesh(ringGeo, ringMat);
-      ring1.rotation.x = Math.PI / 2.3;
-      eyeMaster.add(ring1);
+      // NO LINES / NO RINGS (Removed all orbital gyro rings)
 
-      const ring2 = new THREE.Mesh(new THREE.TorusGeometry(2.5, 0.008, 16, 80), ringMat);
-      ring2.rotation.y = Math.PI / 2.8;
-      eyeMaster.add(ring2);
-
-      // 4. Multi-Directional Studio Lighting for High-End 3D Reflections
-      const ambientLight = new THREE.AmbientLight(0xffffff, 1.1);
+      // 3. Balanced Studio Lighting (Clean contrast, no washing out)
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
       scene.add(ambientLight);
 
-      // Front Top Key Light
-      const keyLight = new THREE.DirectionalLight(0xffffff, 2.8);
-      keyLight.position.set(4, 6, 6);
-      scene.add(keyLight);
+      const frontLight = new THREE.DirectionalLight(0xffffff, 1.4);
+      frontLight.position.set(3, 5, 5);
+      scene.add(frontLight);
 
-      // Back Key Light (Illuminates back face when spinning)
-      const backLight = new THREE.DirectionalLight(0xffffff, 2.4);
-      backLight.position.set(-4, -5, -6);
+      const backLight = new THREE.DirectionalLight(0xffffff, 1.2);
+      backLight.position.set(-3, -4, -5);
       scene.add(backLight);
-
-      // Side Rim Fill Light
-      const sideLight = new THREE.DirectionalLight(0x7182FF, 2.0);
-      sideLight.position.set(-6, 2, 4);
-      scene.add(sideLight);
-
-      // Internal Pupil Glow Light
-      const cyanPoint = new THREE.PointLight(0x7182FF, 6.5, 25);
-      cyanPoint.position.set(0, 0, 2);
-      eyeMaster.add(cyanPoint);
 
       function onResize() {
         if (!container) return;
@@ -2128,7 +2101,7 @@
       }
       window.addEventListener('resize', onResize);
 
-      // Interactive Mouse Orbit & Parallax
+      // Interactive Mouse Tilt
       let mouseX = 0, mouseY = 0;
       let targetTiltX = 0, targetTiltZ = 0;
       let isDragging = false;
@@ -2141,8 +2114,8 @@
         mouseX = (e.clientX - cx) / (window.innerWidth / 2);
         mouseY = (e.clientY - cy) / (window.innerHeight / 2);
 
-        targetTiltX = -mouseY * 0.35;
-        targetTiltZ = -mouseX * 0.2;
+        targetTiltX = -mouseY * 0.3;
+        targetTiltZ = -mouseX * 0.15;
 
         if (isDragging) {
           const deltaX = e.clientX - previousMouseX;
@@ -2166,17 +2139,15 @@
 
         // Continuous Smooth 3D Spinning Motion on Y axis
         if (!isDragging) {
-          eyeMaster.rotation.y += delta * 1.6;
+          eyeMaster.rotation.y += delta * 1.5;
         }
 
         // Mouse Tilt Parallax
         eyeMaster.rotation.x += (targetTiltX - eyeMaster.rotation.x) * 0.08;
         eyeMaster.rotation.z += (targetTiltZ - eyeMaster.rotation.z) * 0.08;
 
-        // Organic Floating Breath
-        eyeMaster.position.y = Math.sin(t * 1.8) * 0.14;
-        ring1.rotation.z = t * 0.3;
-        ring2.rotation.x = t * -0.2;
+        // Floating breath motion
+        eyeMaster.position.y = Math.sin(t * 1.8) * 0.12;
 
         renderer.render(scene, camera);
       }
