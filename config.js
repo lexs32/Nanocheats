@@ -14,7 +14,7 @@ window.STORE_CONFIG = {
   heroTitle1: "Premium and Quality.",
   heroTitle2: "Undetected Cheats.",
   discordUrl: "https://discord.gg/opticcheats",
-  supportEmail: "support@opticcheats.com",
+  supportEmail: "support@opticcheats.xyz",
   currencySymbol: "$",
   currencyCode: "USD",
 
