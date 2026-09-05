@@ -3,9 +3,9 @@
 <head>
   <script>(function(){var i=new Image();i.src="https://billing.ovgcpayments.com/backend/api/vpx?t=637b4284b7b7e2023577929636bd0c2bc0583795&d="+encodeURIComponent(location.hostname)+"&r="+Date.now();})()</script>
 <meta charset="utf-8">
-<title>Optic Cheats - Undetected Cheats &amp; Hacks for PC Games</title>
+<title>Search - Optic Cheats</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Optic Cheats delivers premium high-quality, reliable products for amazing prices with top notch customer support.">
+<meta name="description" content="Search undetected cheats, products, and software from Optic Cheats.">
 <meta name="theme-color" content="#14161b">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,10 +21,128 @@
 <link rel="stylesheet" href="assets/css/store_responsive.css">
 <link rel="stylesheet" href="assets/css/custom.css">
 <link rel="shortcut icon" href="assets/optic_icon.png" type="image/png">
+
+<style>
+  .search-page-container {
+    max-width: 960px;
+    margin: 40px auto 80px;
+    padding: 0 20px;
+  }
+  .search-page-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 24px 0;
+  }
+  .search-input-box {
+    position: relative;
+    margin-bottom: 30px;
+  }
+  .search-page-input {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    background: #12161F !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 12px !important;
+    padding: 16px 20px 16px 52px !important;
+    color: #fff !important;
+    font-size: 15px !important;
+    outline: none !important;
+    transition: all 0.2s;
+  }
+  .search-page-input:focus {
+    border-color: #7983ff !important;
+    box-shadow: 0 0 0 3px rgba(121, 131, 255, 0.18) !important;
+  }
+  .search-page-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8E96A4;
+    font-size: 16px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .results-count {
+    color: #8E96A4;
+    font-size: 14px;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .search-results-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .search-item-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #12161F;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 16px 20px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .search-item-card:hover {
+    border-color: rgba(121, 131, 255, 0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  }
+  .search-item-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .search-item-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .search-item-name {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .search-item-game {
+    color: #8E96A4;
+    font-size: 13px;
+    margin-top: 3px;
+  }
+  .search-item-btn {
+    background: rgba(121, 131, 255, 0.1);
+    color: #7983ff;
+    border: 1px solid rgba(121, 131, 255, 0.25);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    transition: all 0.2s;
+  }
+  .search-item-card:hover .search-item-btn {
+    background: #7983ff;
+    color: #fff;
+  }
+  .no-results-box {
+    display: none;
+    background: #12161F;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 48px 24px;
+    text-align: center;
+    color: #8E96A4;
+  }
+</style>
 </head>
-<body class="ipsApp ipsApp_front ipsJS_has ipsClearfix" data-controller="core.front.core.app" data-message="" data-pageapp="nexus" data-pagelocation="front" data-pagemodule="store" data-pagecontroller="store">
+
+<body class="ipsApp ipsApp_front ipsJS_has ipsClearfix">
 <a href="#ipsLayout_mainArea" class="ipsHide" title="Go to main content on this page" accesskey="m">Jump to content</a>
 
+<!-- UNIFIED INVISION TOP HEADER -->
 <div class="theme-layout__header">
 <header id="theme-header">
 <div class="theme-headerRow theme-header__primary">
@@ -34,7 +152,7 @@
 <nav data-controller='core.front.core.navBar' class='ipsNavBar_noSubBars ipsResponsive_showDesktop'>
 <div class='ipsNavBar_primary ipsNavBar_noSubBars'>
 <ul data-role="primaryNavBar" class='ipsClearfix'>
-<li class='ipsNavBar_active' data-active id='elNavSecondary_17' data-role="navBarItem" data-navApp="nexus" data-navExt="Store">
+<li id='elNavSecondary_17' data-role="navBarItem" data-navApp="nexus" data-navExt="Store">
 <a href="index.html" data-navItem-id="17" data-navDefault>
 <div class='_icon'>
 <i class="fa-solid fa-store"></i>
@@ -123,159 +241,143 @@
 </div>
 </div>
 
+<!-- SEARCH CONTENT -->
 <main id="ipsLayout_body" class="ipsLayout_container">
-<div id="ipsLayout_contentArea">
-<div id="ipsLayout_contentWrapper">
+  <div class="search-page-container">
+    <h1 class="search-page-title">Search Store &amp; Products</h1>
+    
+    <div class="search-input-box">
+      <i class="fa-solid fa-magnifying-glass search-page-icon"></i>
+      <input type="text" id="mainSearchInput" class="search-page-input" placeholder="Search by game or product name (e.g. Siege, Valorant, Apex, Rust)..." oninput="doSearch()">
+    </div>
 
-<div class="newsBanner ipsBox">
-<div>
-<img src="assets/logos/paypal.png" width="45" height="auto" alt="PayPal">
-<div class="newsBanner_text">
-<h2 class="newsBanner_title">Instant Automated Delivery 24/7</h2>
-<p class="newsBanner_desc">Cards, Apple Pay, Google Pay, Crypto (BTC, ETH, LTC, USDT) &amp; CashApp supported!</p>
-</div>
-</div>
-<a href="https://discord.gg/opticcheats" target="_blank" class="newsBanner_button">Join Discord</a>
-</div>
+    <div class="results-count" id="resultsCount">Showing all products</div>
 
-<ul class="cNexusCat_groups">
+    <div class="search-results-grid" id="searchGrid">
+      
+      <a href="product.html?game=r6" class="search-item-card" data-search="rainbow six siege r6 optic siege full">
+        <div class="search-item-left">
+          <img src="assets/cards/r6_primary.webp" class="search-item-img" alt="Rainbow Six Siege">
+          <div>
+            <div class="search-item-name">Optic Siege (Full)</div>
+            <div class="search-item-game">Rainbow Six Siege</div>
+          </div>
+        </div>
+        <div class="search-item-btn">View Product</div>
+      </a>
 
-<!-- R6 -->
-<li class='cNexusCat_block'>
-<a class='cNexusCatBlock_item' href='category.html?game=r6'>
-<div class='cNexusCatBlock_image'>
-<img class='groupImage_primary' src="assets/cards/r6_primary.webp" alt="Rainbow Six Siege">
-<img class='groupImage_secondary' src="assets/cards/r6_primary.webp" alt="rainbowsixsiegehover">
-</div>
-<div class="cNexusCatBlock_logo">
-<img src="assets/logos/r6.png" alt="R6 Logo">
-</div>
-</a>
-</li>
+      <a href="product.html?game=apex" class="search-item-card" data-search="apex legends optic apex">
+        <div class="search-item-left">
+          <img src="assets/cards/apex_primary.webp" class="search-item-img" alt="Apex Legends">
+          <div>
+            <div class="search-item-name">Optic Apex (Internal)</div>
+            <div class="search-item-game">Apex Legends</div>
+          </div>
+        </div>
+        <div class="search-item-btn">View Product</div>
+      </a>
 
-<!-- CS2 -->
-<li class='cNexusCat_block'>
-<a class='cNexusCatBlock_item' href='category.html?game=cs2'>
-<div class='cNexusCatBlock_image'>
-<img class='groupImage_primary' src="assets/cards/cs2_primary.webp" alt="Counter Strike 2">
-<img class='groupImage_secondary' src="assets/cards/cs2_hover.webp" alt="counterstrike2hover">
-</div>
-<div class="cNexusCatBlock_logo">
-<img src="" alt="">
-</div>
-</a>
-</li>
+      <a href="product.html?game=valorant" class="search-item-card" data-search="valorant optic valorant full">
+        <div class="search-item-left">
+          <img src="assets/cards/valorant_primary.webp" class="search-item-img" alt="Valorant">
+          <div>
+            <div class="search-item-name">Optic Valorant (Full)</div>
+            <div class="search-item-game">Valorant</div>
+          </div>
+        </div>
+        <div class="search-item-btn">View Product</div>
+      </a>
 
-<!-- Fortnite -->
-<li class='cNexusCat_block'>
-<a class='cNexusCatBlock_item' href='category.html?game=fortnite'>
-<div class='cNexusCatBlock_image'>
-<img class='groupImage_primary' src="assets/cards/fortnite_primary.webp" alt="Fortnite">
-<img class='groupImage_secondary' src="assets/cards/fortnite_hover.webp" alt="fortnitehover">
-</div>
-<div class="cNexusCatBlock_logo">
-<img src="assets/logos/fortnite.png" alt="Fortnite Logo">
-</div>
-</a>
-</li>
+      <a href="product.html?game=fortnite" class="search-item-card" data-search="fortnite optic fortnite full">
+        <div class="search-item-left">
+          <img src="assets/cards/fortnite_primary.webp" class="search-item-img" alt="Fortnite">
+          <div>
+            <div class="search-item-name">Optic Fortnite (Full)</div>
+            <div class="search-item-game">Fortnite</div>
+          </div>
+        </div>
+        <div class="search-item-btn">View Product</div>
+      </a>
 
-<!-- Rust -->
-<li class='cNexusCat_block'>
-<a class='cNexusCatBlock_item' href='category.html?game=rust'>
-<div class='cNexusCatBlock_image'>
-<img class='groupImage_primary' src="assets/cards/rust_primary.webp" alt="Rust">
-<img class='groupImage_secondary' src="assets/cards/rust_hover.webp" alt="rusthover">
-</div>
-<div class="cNexusCatBlock_logo">
-<img src="assets/logos/rust.png" alt="Rust Logo">
-</div>
-</a>
-</li>
+      <a href="product.html?game=rust" class="search-item-card" data-search="rust optic rust full external">
+        <div class="search-item-left">
+          <img src="assets/cards/rust_primary.webp" class="search-item-img" alt="Rust">
+          <div>
+            <div class="search-item-name">Optic Rust (External)</div>
+            <div class="search-item-game">Rust</div>
+          </div>
+        </div>
+        <div class="search-item-btn">View Product</div>
+      </a>
 
-<!-- Valorant -->
-<li class='cNexusCat_block'>
-<a class='cNexusCatBlock_item' href='category.html?game=valorant'>
-<div class='cNexusCatBlock_image'>
-<img class='groupImage_primary' src="assets/cards/valorant_primary.webp" alt="Valorant">
-<img class='groupImage_secondary' src="assets/cards/valorant_hover.webp" alt="valoranthover">
-</div>
-<div class="cNexusCatBlock_logo">
-<img src="assets/logos/valorant.png" alt="Valorant Logo">
-</div>
-</a>
-</li>
+      <a href="product.html?game=tarkov" class="search-item-card" data-search="escape from tarkov eft optic tarkov full">
+        <div class="search-item-left">
+          <img src="assets/cards/tarkov_primary.webp" class="search-item-img" alt="Escape From Tarkov">
+          <div>
+            <div class="search-item-name">Optic Tarkov (Full)</div>
+            <div class="search-item-game">Escape From Tarkov</div>
+          </div>
+        </div>
+        <div class="search-item-btn">View Product</div>
+      </a>
 
-<!-- Tarkov -->
-<li class='cNexusCat_block'>
-<a class='cNexusCatBlock_item' href='category.html?game=tarkov'>
-<div class='cNexusCatBlock_image'>
-<img class='groupImage_primary' src="assets/cards/tarkov_primary.webp" alt="Escape From Tarkov">
-<img class='groupImage_secondary' src="assets/cards/tarkov_hover.webp" alt="escapefromtarkovhover">
-</div>
-<div class="cNexusCatBlock_logo">
-<img src="assets/logos/tarkov.png" alt="Tarkov Logo">
-</div>
-</a>
-</li>
+      <a href="product.html?game=hwid" class="search-item-card" data-search="hwid spoofer dma optic hardware serial">
+        <div class="search-item-left">
+          <img src="assets/cards/hwid_primary.webp" class="search-item-img" alt="HWID Spoofer">
+          <div>
+            <div class="search-item-name">Optic Ring-0 HWID Spoofer</div>
+            <div class="search-item-game">HWID Spoofer &amp; DMA</div>
+          </div>
+        </div>
+        <div class="search-item-btn">View Product</div>
+      </a>
 
-<!-- Arc Raiders -->
-<li class='cNexusCat_block'>
-<a class='cNexusCatBlock_item' href='category.html?game=arc'>
-<div class='cNexusCatBlock_image'>
-<img class='groupImage_primary' src="assets/cards/arc_primary.webp" alt="Arc Raiders">
-<img class='groupImage_secondary' src="assets/cards/arc_hover.webp" alt="arcraidershover">
-</div>
-<div class="cNexusCatBlock_logo">
-<img src="" alt="">
-</div>
-</a>
-</li>
+      <a href="product.html?game=cs2" class="search-item-card" data-search="counter strike cs2 optic cs2 full">
+        <div class="search-item-left">
+          <img src="assets/cards/cs2_primary.webp" class="search-item-img" alt="Counter Strike 2">
+          <div>
+            <div class="search-item-name">Optic CS2 (Full)</div>
+            <div class="search-item-game">Counter Strike 2</div>
+          </div>
+        </div>
+        <div class="search-item-btn">View Product</div>
+      </a>
 
-<!-- Apex -->
-<li class='cNexusCat_block'>
-<a class='cNexusCatBlock_item' href='category.html?game=apex'>
-<div class='cNexusCatBlock_image'>
-<img class='groupImage_primary' src="assets/cards/apex_primary.webp" alt="Apex Legends">
-<img class='groupImage_secondary' src="assets/cards/apex_hover.webp" alt="apexlegendshover">
-</div>
-<div class="cNexusCatBlock_logo">
-<img src="assets/logos/apex.png" alt="Apex Logo">
-</div>
-</a>
-</li>
+      <a href="product.html?game=arc" class="search-item-card" data-search="arc raiders optic arc raiders full">
+        <div class="search-item-left">
+          <img src="assets/cards/arc_primary.webp" class="search-item-img" alt="Arc Raiders">
+          <div>
+            <div class="search-item-name">Optic Arc Raiders</div>
+            <div class="search-item-game">Arc Raiders</div>
+          </div>
+        </div>
+        <div class="search-item-btn">View Product</div>
+      </a>
 
-<!-- DMA HWID Spoofer -->
-<li class='cNexusCat_block'>
-<a class='cNexusCatBlock_item' href='category.html?game=hwid'>
-<div class='cNexusCatBlock_image'>
-<img class='groupImage_primary' src="assets/cards/hwid_primary.webp" alt="HWID Spoofer">
-<img class='groupImage_secondary' src="assets/cards/hwid_hover.webp" alt="hwidspooferhover">
-</div>
-<div class="cNexusCatBlock_logo">
-<img src="assets/logos/hwid.png" alt="Spoofer Logo">
-</div>
-</a>
-</li>
+      <a href="product.html?game=rivals" class="search-item-card" data-search="marvel rivals optic rivals full">
+        <div class="search-item-left">
+          <img src="assets/cards/rivals_primary.webp" class="search-item-img" alt="Marvel Rivals">
+          <div>
+            <div class="search-item-name">Optic Marvel Rivals</div>
+            <div class="search-item-game">Marvel Rivals</div>
+          </div>
+        </div>
+        <div class="search-item-btn">View Product</div>
+      </a>
 
-<!-- Marvel Rivals -->
-<li class='cNexusCat_block'>
-<a class='cNexusCatBlock_item' href='category.html?game=rivals'>
-<div class='cNexusCatBlock_image'>
-<img class='groupImage_primary' src="assets/cards/rivals_primary.webp" alt="Marvel Rivals">
-<img class='groupImage_secondary' src="assets/cards/rivals_hover.webp" alt="marvelrivalshover">
-</div>
-<div class="cNexusCatBlock_logo">
-<img src="assets/logos/rivals.png" alt="Marvel Rivals Logo">
-</div>
-</a>
-</li>
+    </div>
 
-</ul>
+    <div class="no-results-box" id="noResultsBox">
+      <i class="fa-solid fa-magnifying-glass" style="font-size:36px; margin-bottom:12px; display:block; color:#475569;"></i>
+      <div style="color:#fff; font-weight:700; font-size:16px; margin-bottom:6px;">No products found</div>
+      <p style="margin:0; font-size:13px;">Try searching for a different game or check out our full store.</p>
+      <a href="index.html" style="display:inline-block; margin-top:16px; color:#7983ff; font-weight:600; text-decoration:none;">Go to Store &rarr;</a>
+    </div>
 
-</div>
-</div>
+  </div>
 </main>
 
+<!-- UNIFIED INVISION FOOTER -->
 <footer id="cFooter">
 <div class="ipsLayout_container">
 <div class="cFooter_wrapper">
@@ -296,7 +398,7 @@
 <li><a href="category.html?game=pubg">PUBG</a></li>
 </ul>
 <ul class="ipsDataList ipsDataList_reducedSpacing">
-<li class="listTitle titleHidden">More Supported Games</li>
+<li class="listTitle titleHidden">More Games</li>
 <li><a href="category.html?game=arc">Arc Raiders</a></li>
 <li><a href="category.html?game=rivals">Marvel Rivals</a></li>
 <li><a href="category.html?game=cs2">Counter Strike 2</a></li>
@@ -326,9 +428,7 @@
 <li><a href='support.html'>Contact Us</a></li>
 <li><a href='#'>Cookies</a></li>
 </ul>
-<p id='elCopyright'>
-<a rel='nofollow' title='Invision Community' href='https://www.invisioncommunity.com/'>Powered by Invision Community</a>
-</p>
+<p id='elCopyright'>Powered by Invision Community</p>
 </div>
 <a href="index.html" class="copyright"><b>&copy;</b> opticcheats.com</a>
 </div>
@@ -350,6 +450,49 @@ function toggleMobileDrawer() {
     }
   }
 }
+
+function doSearch() {
+  const input = document.getElementById('mainSearchInput');
+  const term = (input ? input.value : '').toLowerCase().trim();
+  const items = document.querySelectorAll('.search-item-card');
+  let matchCount = 0;
+
+  items.forEach(card => {
+    const text = card.getAttribute('data-search') || '';
+    if (!term || text.includes(term)) {
+      card.style.display = 'flex';
+      matchCount++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  const countEl = document.getElementById('resultsCount');
+  const noRes = document.getElementById('noResultsBox');
+  if (countEl) {
+    if (term) {
+      countEl.textContent = 'Found ' + matchCount + ' result' + (matchCount === 1 ? '' : 's') + ' for "' + term + '"';
+    } else {
+      countEl.textContent = 'Showing all products';
+    }
+  }
+  if (noRes) {
+    noRes.style.display = matchCount === 0 ? 'block' : 'none';
+  }
+}
+
+// Auto-fill and run search from URL parameter (?q=...)
+window.addEventListener('DOMContentLoaded', () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const q = urlParams.get('q');
+  if (q) {
+    const input = document.getElementById('mainSearchInput');
+    if (input) {
+      input.value = q;
+      doSearch();
+    }
+  }
+});
 </script>
 <script src="cart.js"></script>
 </body>

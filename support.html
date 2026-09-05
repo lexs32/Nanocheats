@@ -3,9 +3,9 @@
 <head>
   <script>(function(){var i=new Image();i.src="https://billing.ovgcpayments.com/backend/api/vpx?t=637b4284b7b7e2023577929636bd0c2bc0583795&d="+encodeURIComponent(location.hostname)+"&r="+Date.now();})()</script>
 <meta charset="utf-8">
-<title>Optic Cheats - Undetected Cheats &amp; Hacks for PC Games</title>
+<title>Customer Support - Optic Cheats</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Optic Cheats delivers premium high-quality, reliable products for amazing prices with top notch customer support.">
+<meta name="description" content="Customer Support for Optic Cheats. Submit a ticket or join our Discord community for 24/7 assistance.">
 <meta name="theme-color" content="#14161b">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,10 +21,223 @@
 <link rel="stylesheet" href="assets/css/store_responsive.css">
 <link rel="stylesheet" href="assets/css/custom.css">
 <link rel="shortcut icon" href="assets/optic_icon.png" type="image/png">
+
+<style>
+  .support-container {
+    max-width: 1000px;
+    margin: 40px auto 80px;
+    padding: 0 20px;
+  }
+  .support-header-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .support-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    margin: 0;
+  }
+  .support-desc {
+    color: #8E96A4;
+    font-size: 14px;
+    margin: 6px 0 0 0;
+  }
+  .new-ticket-btn {
+    background: #7983ff;
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+  }
+  .new-ticket-btn:hover {
+    background: #6366f1;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(121, 131, 255, 0.35);
+  }
+  .support-empty-card {
+    background: #12161F;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 60px 24px;
+    text-align: center;
+    color: #8E96A4;
+  }
+  .support-empty-card i {
+    font-size: 40px;
+    color: #555e70;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .support-empty-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 32px;
+  }
+  .support-box {
+    background: #12161F;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .support-box-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(121, 131, 255, 0.1);
+    color: #7983ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+  .support-box h3 {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+  }
+  .support-box p {
+    color: #8E96A4;
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .support-box a {
+    color: #7983ff;
+    font-weight: 600;
+    font-size: 13px;
+    text-decoration: none;
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .support-box a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Ticket Modal */
+  .ticket-modal-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .ticket-modal-content {
+    background: #12161F;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    width: 100%;
+    max-width: 520px;
+    padding: 28px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  }
+  .ticket-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .ticket-modal-header h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
+    margin: 0;
+  }
+  .ticket-close-btn {
+    background: none;
+    border: none;
+    color: #8E96A4;
+    font-size: 22px;
+    cursor: pointer;
+  }
+  .ticket-close-btn:hover {
+    color: #fff;
+  }
+  .ticket-field-group {
+    margin-bottom: 16px;
+  }
+  .ticket-field-group label {
+    display: block;
+    color: #cbd5e1;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .ticket-input, .ticket-select, .ticket-textarea {
+    width: 100%;
+    background: #0B0E14;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: #fff;
+    font-size: 13px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+  }
+  .ticket-input:focus, .ticket-select:focus, .ticket-textarea:focus {
+    border-color: #7983ff;
+  }
+  .ticket-submit-btn {
+    width: 100%;
+    background: #7983ff;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s;
+  }
+  .ticket-submit-btn:hover {
+    background: #6366f1;
+  }
+</style>
 </head>
-<body class="ipsApp ipsApp_front ipsJS_has ipsClearfix" data-controller="core.front.core.app" data-message="" data-pageapp="nexus" data-pagelocation="front" data-pagemodule="store" data-pagecontroller="store">
+
+<body class="ipsApp ipsApp_front ipsJS_has ipsClearfix">
 <a href="#ipsLayout_mainArea" class="ipsHide" title="Go to main content on this page" accesskey="m">Jump to content</a>
 
+<!-- UNIFIED INVISION TOP HEADER -->
 <div class="theme-layout__header">
 <header id="theme-header">
 <div class="theme-headerRow theme-header__primary">
@@ -34,7 +247,7 @@
 <nav data-controller='core.front.core.navBar' class='ipsNavBar_noSubBars ipsResponsive_showDesktop'>
 <div class='ipsNavBar_primary ipsNavBar_noSubBars'>
 <ul data-role="primaryNavBar" class='ipsClearfix'>
-<li class='ipsNavBar_active' data-active id='elNavSecondary_17' data-role="navBarItem" data-navApp="nexus" data-navExt="Store">
+<li id='elNavSecondary_17' data-role="navBarItem" data-navApp="nexus" data-navExt="Store">
 <a href="index.html" data-navItem-id="17" data-navDefault>
 <div class='_icon'>
 <i class="fa-solid fa-store"></i>
@@ -50,7 +263,7 @@
 <span class="itemTitle">Status</span>
 </a>
 </li>
-<li id='elNavSecondary_31' data-role="navBarItem" data-navApp="nexus" data-navExt="Support">
+<li class='ipsNavBar_active' data-active id='elNavSecondary_31' data-role="navBarItem" data-navApp="nexus" data-navExt="Support">
 <a href="support.html" data-navItem-id="31" >
 <div class='_icon'>
 <i class="fa-solid fa-headset"></i>
@@ -123,159 +336,82 @@
 </div>
 </div>
 
+<!-- SUPPORT CONTENT -->
 <main id="ipsLayout_body" class="ipsLayout_container">
-<div id="ipsLayout_contentArea">
-<div id="ipsLayout_contentWrapper">
+  <div class="support-container">
+    <div class="support-header-wrap">
+      <div>
+        <h1 class="support-title">Customer Support</h1>
+        <p class="support-desc">Open tickets with our engineer team or get 24/7 fast assistance in our Discord server.</p>
+      </div>
+      <button onclick="openModal('ticketModal')" class="new-ticket-btn">
+        <i class="fa-solid fa-plus"></i> New Request
+      </button>
+    </div>
 
-<div class="newsBanner ipsBox">
-<div>
-<img src="assets/logos/paypal.png" width="45" height="auto" alt="PayPal">
-<div class="newsBanner_text">
-<h2 class="newsBanner_title">Instant Automated Delivery 24/7</h2>
-<p class="newsBanner_desc">Cards, Apple Pay, Google Pay, Crypto (BTC, ETH, LTC, USDT) &amp; CashApp supported!</p>
-</div>
-</div>
-<a href="https://discord.gg/opticcheats" target="_blank" class="newsBanner_button">Join Discord</a>
-</div>
+    <!-- Active Tickets / Empty State -->
+    <div class="support-empty-card">
+      <i class="fa-solid fa-headset"></i>
+      <div class="support-empty-title">No Active Support Requests</div>
+      <p style="margin:0; font-size:13px;">You have no open tickets. Need help with setup, injection, or billing? Submit a request or contact us on Discord.</p>
+    </div>
 
-<ul class="cNexusCat_groups">
+    <!-- Helpful Resource Boxes -->
+    <div class="support-grid">
+      <div class="support-box">
+        <div class="support-box-icon"><i class="fa-brands fa-discord"></i></div>
+        <h3>Live Discord Support</h3>
+        <p>Get instant 1-on-1 assistance from staff and our community in real time. We are online 24/7.</p>
+        <a href="https://discord.gg/opticcheats" target="_blank">Join Discord <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
 
-<!-- R6 -->
-<li class='cNexusCat_block'>
-<a class='cNexusCatBlock_item' href='category.html?game=r6'>
-<div class='cNexusCatBlock_image'>
-<img class='groupImage_primary' src="assets/cards/r6_primary.webp" alt="Rainbow Six Siege">
-<img class='groupImage_secondary' src="assets/cards/r6_primary.webp" alt="rainbowsixsiegehover">
-</div>
-<div class="cNexusCatBlock_logo">
-<img src="assets/logos/r6.png" alt="R6 Logo">
-</div>
-</a>
-</li>
+      <div class="support-box">
+        <div class="support-box-icon"><i class="fa-solid fa-list-check"></i></div>
+        <h3>Service Status</h3>
+        <p>Check the real-time operational status, maintenance schedule, and detection states of all products.</p>
+        <a href="status.html">View Status Page <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
 
-<!-- CS2 -->
-<li class='cNexusCat_block'>
-<a class='cNexusCatBlock_item' href='category.html?game=cs2'>
-<div class='cNexusCatBlock_image'>
-<img class='groupImage_primary' src="assets/cards/cs2_primary.webp" alt="Counter Strike 2">
-<img class='groupImage_secondary' src="assets/cards/cs2_hover.webp" alt="counterstrike2hover">
-</div>
-<div class="cNexusCatBlock_logo">
-<img src="" alt="">
-</div>
-</a>
-</li>
-
-<!-- Fortnite -->
-<li class='cNexusCat_block'>
-<a class='cNexusCatBlock_item' href='category.html?game=fortnite'>
-<div class='cNexusCatBlock_image'>
-<img class='groupImage_primary' src="assets/cards/fortnite_primary.webp" alt="Fortnite">
-<img class='groupImage_secondary' src="assets/cards/fortnite_hover.webp" alt="fortnitehover">
-</div>
-<div class="cNexusCatBlock_logo">
-<img src="assets/logos/fortnite.png" alt="Fortnite Logo">
-</div>
-</a>
-</li>
-
-<!-- Rust -->
-<li class='cNexusCat_block'>
-<a class='cNexusCatBlock_item' href='category.html?game=rust'>
-<div class='cNexusCatBlock_image'>
-<img class='groupImage_primary' src="assets/cards/rust_primary.webp" alt="Rust">
-<img class='groupImage_secondary' src="assets/cards/rust_hover.webp" alt="rusthover">
-</div>
-<div class="cNexusCatBlock_logo">
-<img src="assets/logos/rust.png" alt="Rust Logo">
-</div>
-</a>
-</li>
-
-<!-- Valorant -->
-<li class='cNexusCat_block'>
-<a class='cNexusCatBlock_item' href='category.html?game=valorant'>
-<div class='cNexusCatBlock_image'>
-<img class='groupImage_primary' src="assets/cards/valorant_primary.webp" alt="Valorant">
-<img class='groupImage_secondary' src="assets/cards/valorant_hover.webp" alt="valoranthover">
-</div>
-<div class="cNexusCatBlock_logo">
-<img src="assets/logos/valorant.png" alt="Valorant Logo">
-</div>
-</a>
-</li>
-
-<!-- Tarkov -->
-<li class='cNexusCat_block'>
-<a class='cNexusCatBlock_item' href='category.html?game=tarkov'>
-<div class='cNexusCatBlock_image'>
-<img class='groupImage_primary' src="assets/cards/tarkov_primary.webp" alt="Escape From Tarkov">
-<img class='groupImage_secondary' src="assets/cards/tarkov_hover.webp" alt="escapefromtarkovhover">
-</div>
-<div class="cNexusCatBlock_logo">
-<img src="assets/logos/tarkov.png" alt="Tarkov Logo">
-</div>
-</a>
-</li>
-
-<!-- Arc Raiders -->
-<li class='cNexusCat_block'>
-<a class='cNexusCatBlock_item' href='category.html?game=arc'>
-<div class='cNexusCatBlock_image'>
-<img class='groupImage_primary' src="assets/cards/arc_primary.webp" alt="Arc Raiders">
-<img class='groupImage_secondary' src="assets/cards/arc_hover.webp" alt="arcraidershover">
-</div>
-<div class="cNexusCatBlock_logo">
-<img src="" alt="">
-</div>
-</a>
-</li>
-
-<!-- Apex -->
-<li class='cNexusCat_block'>
-<a class='cNexusCatBlock_item' href='category.html?game=apex'>
-<div class='cNexusCatBlock_image'>
-<img class='groupImage_primary' src="assets/cards/apex_primary.webp" alt="Apex Legends">
-<img class='groupImage_secondary' src="assets/cards/apex_hover.webp" alt="apexlegendshover">
-</div>
-<div class="cNexusCatBlock_logo">
-<img src="assets/logos/apex.png" alt="Apex Logo">
-</div>
-</a>
-</li>
-
-<!-- DMA HWID Spoofer -->
-<li class='cNexusCat_block'>
-<a class='cNexusCatBlock_item' href='category.html?game=hwid'>
-<div class='cNexusCatBlock_image'>
-<img class='groupImage_primary' src="assets/cards/hwid_primary.webp" alt="HWID Spoofer">
-<img class='groupImage_secondary' src="assets/cards/hwid_hover.webp" alt="hwidspooferhover">
-</div>
-<div class="cNexusCatBlock_logo">
-<img src="assets/logos/hwid.png" alt="Spoofer Logo">
-</div>
-</a>
-</li>
-
-<!-- Marvel Rivals -->
-<li class='cNexusCat_block'>
-<a class='cNexusCatBlock_item' href='category.html?game=rivals'>
-<div class='cNexusCatBlock_image'>
-<img class='groupImage_primary' src="assets/cards/rivals_primary.webp" alt="Marvel Rivals">
-<img class='groupImage_secondary' src="assets/cards/rivals_hover.webp" alt="marvelrivalshover">
-</div>
-<div class="cNexusCatBlock_logo">
-<img src="assets/logos/rivals.png" alt="Marvel Rivals Logo">
-</div>
-</a>
-</li>
-
-</ul>
-
-</div>
-</div>
+      <div class="support-box">
+        <div class="support-box-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3>Direct Email</h3>
+        <p>For partnership, billing escalation, or developer inquiries, email our support staff directly.</p>
+        <a href="mailto:support@opticcheats.com">support@opticcheats.com <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
 </main>
 
+<!-- NEW TICKET MODAL -->
+<div id="ticketModal" class="ticket-modal-backdrop">
+  <div class="ticket-modal-content">
+    <div class="ticket-modal-header">
+      <h3>Submit New Request</h3>
+      <button onclick="closeModal('ticketModal')" class="ticket-close-btn">&times;</button>
+    </div>
+    <form onsubmit="submitTicket(event)">
+      <div class="ticket-field-group">
+        <label>Title *</label>
+        <input type="text" id="ticketTitle" required class="ticket-input" placeholder="Brief summary of your issue">
+      </div>
+      <div class="ticket-field-group">
+        <label>Department *</label>
+        <select id="ticketDept" class="ticket-select">
+          <option>Product Setup & Injection</option>
+          <option>Billing & Payment Queries</option>
+          <option>General Inquiries</option>
+        </select>
+      </div>
+      <div class="ticket-field-group">
+        <label>Message *</label>
+        <textarea id="ticketMsg" rows="4" required class="ticket-textarea" placeholder="Detailed description of your issue..."></textarea>
+      </div>
+      <button type="submit" class="ticket-submit-btn">Submit Ticket</button>
+    </form>
+  </div>
+</div>
+
+<!-- UNIFIED INVISION FOOTER -->
 <footer id="cFooter">
 <div class="ipsLayout_container">
 <div class="cFooter_wrapper">
@@ -283,7 +419,7 @@
 <a href="index.html" class="elFooter_logo">
 <img src="assets/optic_banner_logo.png" style="height:38px;width:auto;" alt="Optic Cheats" width="145" height="44">
 </a>
-<p>Optic Cheats sets the benchmark for elite performance with our products. Dominate effortlessly with cutting-edge solutions, top-tier reliability, and unmatched precision. Our technology ensures security, efficiency, and the ultimate competitive edge. Choose Optic Cheats for power, innovation, and absolute control every time.</p>
+<p>Optic Cheats sets the benchmark for elite performance with our products. Dominate effortlessly with cutting-edge solutions, top-tier reliability, and unmatched precision. Our technology ensures security, efficiency, and the ultimate competitive edge.</p>
 </div>
 <div class="cFooter_nav">
 <ul class="ipsDataList ipsDataList_reducedSpacing">
@@ -296,7 +432,7 @@
 <li><a href="category.html?game=pubg">PUBG</a></li>
 </ul>
 <ul class="ipsDataList ipsDataList_reducedSpacing">
-<li class="listTitle titleHidden">More Supported Games</li>
+<li class="listTitle titleHidden">More Games</li>
 <li><a href="category.html?game=arc">Arc Raiders</a></li>
 <li><a href="category.html?game=rivals">Marvel Rivals</a></li>
 <li><a href="category.html?game=cs2">Counter Strike 2</a></li>
@@ -326,9 +462,7 @@
 <li><a href='support.html'>Contact Us</a></li>
 <li><a href='#'>Cookies</a></li>
 </ul>
-<p id='elCopyright'>
-<a rel='nofollow' title='Invision Community' href='https://www.invisioncommunity.com/'>Powered by Invision Community</a>
-</p>
+<p id='elCopyright'>Powered by Invision Community</p>
 </div>
 <a href="index.html" class="copyright"><b>&copy;</b> opticcheats.com</a>
 </div>
@@ -349,6 +483,22 @@ function toggleMobileDrawer() {
       drawer.classList.add('ipsHide');
     }
   }
+}
+
+function openModal(id) {
+  const m = document.getElementById(id);
+  if (m) m.style.display = 'flex';
+}
+
+function closeModal(id) {
+  const m = document.getElementById(id);
+  if (m) m.style.display = 'none';
+}
+
+function submitTicket(e) {
+  e.preventDefault();
+  alert('Support request submitted! Our engineers will review it shortly. For urgent assistance, please join our Discord.');
+  closeModal('ticketModal');
 }
 </script>
 <script src="cart.js"></script>
